@@ -13,7 +13,7 @@ export const data = [
     id: "ipad",
     category: "electronic",
     image:
-      "https://salt.tikicdn.com/cache/550x650/ts/product/50/c7/dc/27d3d999a56d5fea6dfe4e6d42e263ab.png",
+      "https://salt.tikicdn.com/cache/w1200/ts/product/50/c7/dc/27d3d999a56d5fea6dfe4e6d42e263ab.png",
   },
   {
     name: "TV samsung ",
