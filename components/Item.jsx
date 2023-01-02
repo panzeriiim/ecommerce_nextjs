@@ -1,7 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
+import { Cart } from "../Context/CartContext";
 
 function Item({ product }) {
+  const { state, dispatch } = useContext(Cart);
+  const addToCartHandler = () => {
+    const existItem = state.cartItems.find((item) => item.id === product.id);
+    dispatch({
+      type: "CART_ADD_ITEM",
+      payload: {
+        ...product,
+        quantity: existItem ? existItem.quantity + 1 : 1,
+      },
+    });
+  };
   return (
     <div className="card">
       <Link href={`/product/${product.id}`}>
@@ -19,7 +32,13 @@ function Item({ product }) {
         </Link>
         <p className="mb-2">{product.brand}</p>
         <p>${product.price}</p>
-        <button className="primary-button" type="button">
+        <button
+          className="primary-button"
+          type="button"
+          onClick={() => {
+            addToCartHandler();
+          }}
+        >
           Add to cart
         </button>
       </div>
