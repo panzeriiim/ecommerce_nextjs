@@ -16,6 +16,21 @@ function cartReducer(state, action) {
         : [...state.cartItems, newItem];
       return { ...state, cartItems };
     }
+    case "CART_REMOVE_ITEM": {
+      const removedItemId = action.payload;
+      const cartItems = state.cartItems.filter(
+        (item) => item.id !== removedItemId
+      );
+      console.log(cartItems);
+      return { ...state, cartItems };
+    }
+    case "ITEM_UPDATE_QUANTITY": {
+      const updatedItem = action.payload;
+      const cartItems = state.cartItems.map((item) =>
+        item.id === updatedItem.id ? updatedItem : item
+      );
+      return { ...state, cartItems };
+    }
     default:
       return state;
   }
