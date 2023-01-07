@@ -8,6 +8,7 @@ import {
   PlusCircleIcon,
   MinusCircleIcon,
 } from "@heroicons/react/24/outline";
+import dynamic from "next/dynamic";
 
 function CartScreen() {
   const { state, dispatch } = useContext(Cart);
@@ -61,7 +62,7 @@ function CartScreen() {
                           onClick={() => {
                             updateQuantityHandler(item, item.quantity - 1);
                           }}
-                          disabled={item.quantity === 0}
+                          disabled={item.quantity === 1}
                         >
                           <MinusCircleIcon className="h-5 w-5"></MinusCircleIcon>
                         </button>
@@ -116,4 +117,4 @@ function CartScreen() {
     </Layout>
   );
 }
-export default CartScreen;
+export default dynamic(() => Promise.resolve(CartScreen), { ssr: false });
